@@ -8,8 +8,8 @@ let segundoResultado = null;
 let movimientos = 0;
 let aciertos = 0;
 let temporizador = false;
-let timer = 30;
-let timerInicial = 30
+let timer = 40;
+let timerInicial = 40
 let tiempoRegresivoId = null;
 
 let winAudio = new Audio('./Sonidos/win.wav');
@@ -35,6 +35,7 @@ function contarTiempo(){
             clearInterval (tiempoRegresivoId)
             bloquearTarjetas(numeros);
             loseAudio.play();
+            mostrarTiempo.innerHTML= `Perdiste 😔 suerte para la proxima`
         }
     },1000)
 }
@@ -74,7 +75,8 @@ tarjeta1.disabled = true;
 
     //Incrementar movimientos
     movimientos++
-    mostrarMovimientos.innerHTML= `Movimientos: ${movimientos}`;
+    
+    mostrarMovimientos.innerHTML= `Movimientos 😲: ${movimientos}`;
     if(primerResultado == segundoResultado){
         //Encerar contador tarjetas destapadas
         tarjetasDestapadas= 0;
@@ -82,15 +84,16 @@ tarjeta1.disabled = true;
         //Aumentar aciertos
         aciertos++;
         mostrarAciertos.innerHTML = `Aciertos: ${aciertos}`
+        mostrarAciertos.innerHTML = `Aciertos 😎: ${aciertos}`
         rightAudio.play();
         if(aciertos==8){
             winAudio.play();
             clearInterval(tiempoRegresivoId);
-            mostrarTiempo.innerHTML= `Fantástico sólo demoraste ${timerInicial - timer} segundos`
+            mostrarTiempo.innerHTML= `Ganaste 🎉🤩 sólo demoraste ${timerInicial - timer} segundos`
         }
     }else{
         wrongAudio.play();
-        //Msotrar momentaneamente valores y volver a tapar
+        //Mootrar momentaneamente valores y volver a tapar
         setTimeout(()=>{
             tarjeta1.innerHTML = ' ';
             tarjeta2.innerHTML = ' ';
